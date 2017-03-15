@@ -1,9 +1,10 @@
 \documentclass[12pt]{article}
+\usepackage{tabularx}
 \usepackage{xcolor}
 \usepackage{graphicx}
 \usepackage{rotating}
 \usepackage{lscape}
-\usepackage{booktabs}
+%\usepackage{booktabs}
 \usepackage{comment}
 \usepackage{listings}
 \usepackage{multicol,multirow}
@@ -72,7 +73,7 @@
 
 \newcommand{\revision}{1.0}
 
-% A key for optional output:
+% A key for optional output, here, the "how to make the images" section:
 \newif\ifkey
 \keyfalse
 % Uncommenting \keytrue would set the "key" variable to TRUE:
@@ -99,7 +100,6 @@ Assembly and Testing Guide\\
 Board version \revision\\
 Guide version 1.1\\
 Jesse Hamner\\
-March 2017\\
 \vspace{0.2in}
 
 
@@ -304,6 +304,10 @@ Although not required to successfully assemble and use the Stepped Tone Generato
 \clearpage
 \section{How To Make The Images In This Document}
 
+This document includes images created from within Eagle CAD and using external programs. To show how it is done, and to provide any hints to those who would like to see how the documentation was made, I include the following mini-tutorial.
+
+\subsection{EagleCAD Schematic and Layout Images }
+
 An EagleCAD script is provided in Figure \ref{fig:codelistexport} and in the GitHub repository. Run the script from within EagleCAD and the first set of images will appear. Basically, the script turns on the layers for each particular image, sets color or monochrome, sets the resolution to 600 DPI, and exports each resulting layer set to a PNG file. For instance, before making the \emph{top} layer, the script turns off the set of layers in EagleCAD that would make it hard to parse the top components -- i.e.~all of the ``bottom'' layers, like 16, 22, 24, 26, 28, 30, 32, 34, 36, 40, 42, 52, 122, 126, 128, and, as noted above, 200 (where the logo image silkscreen resides). To make an image of the underside, a similar operation is performed, blanking the ``top" layers. The script writes image files called:
 
 \bigskip
@@ -379,24 +383,45 @@ and {\color{webblue}\href{http://www.imagemagick.org/script/index.php}{ImageMagi
 
 The PCB also includes three pieces of art from the ancient era of video games. the Asteroids ship was converted using the \texttt{import-bmp.ulp} user language script that is included in Eagle CAD. The other two presented a fun challenge, which was to draw the 8-bit sprites using the Eagle CAD scripting language. It's pretty easy to draw squares and rectangles using the language, so I wrote a Python script that reads in a very simple csv file, composed of rows of comma-separated ``1'' or ``0'' cells. The Python script then writes out a nice (and easily scalable, if you check out the top of the script) Eagle CAD script that draws the figure in the layer you specify. It's much faster than drawing it yourself, and the CAM script runs much faster too, since the sprites are so simple.
 
+\medskip
 
 \begin{figure}[h!]
-\begin{minipage}{3.5in}
-% Code listing:
-\lstinputlisting[
- language=bash, 
- breaklines=true, 
- basicstyle=\ttfamily\footnotesize, 
- numbers=left, 
- numbersep=5pt,
- commentstyle=\color{mygreen},
- numberstyle=\tiny\ttfamily\color{black}, 
- frame=none]
- {../graphics/pitfallharry.txt}
-\end{minipage}
-\caption{The comma-separated source text that \texttt{eagledraw.py} uses to draw Pitfall Harry.}
-\label{fig:pitfallharry}
 
+\begin{tabular}{ m{2.7in}  m{3.0in} }
+\hline\\[\negsep]
+\multicolumn{1}{c}{\textbf{CSV code}} & \multicolumn{1}{c}{\textbf{Image}} \\[\sep]
+\hline
+
+\begin{lstlisting}
+0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0
+0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0
+0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0
+0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0
+0,0,0,0,0,0,1,1,1,1,0,0,1,1,0,0
+0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0
+0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0
+0,0,1,1,0,0,1,1,1,1,0,0,0,0,0,0
+0,0,1,1,0,0,1,1,1,1,0,0,0,0,0,0
+0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0
+0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0
+0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0
+1,1,1,1,0,0,1,1,1,1,0,0,1,1,0,0
+0,0,1,1,1,1,1,1,0,0,0,0,1,1,0,0
+0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1
+\end{lstlisting}
+
+&
+
+\fbox{
+\includegraphics[scale=0.37]{pfh2.png}
+}
+\\
+\hline
+\end{tabular}
+
+\caption{The comma-separated source text that \texttt{eagledraw.py} uses to draw Pitfall Harry, and the resulting image in Eagle CAD.}
+\label{fig:pitfallharry}
 \end{figure}
 
 
