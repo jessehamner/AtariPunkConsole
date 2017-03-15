@@ -1,0 +1,48 @@
+# An EagleCAD script to export four versions of a circuit board:
+# 2 layers in color; and B/W, two layers, top layer, bottom layer,
+# and silkscreen layers for each top and bottom.
+
+# Jesse Hamner, July 2016
+
+# Turn on the layers we want to see (note the RIPUP; won't render polygons)
+# 200bmp is off, because it obscures the bottom layer
+
+SET COLOR_LAYER fp3 7;
+RIPUP @ GND;
+DISPLAY NONE TOP BOTTOM PADS VIAS DIMENSION UNROUTED TPLACE BPLACE TNAMES BNAMES TCREAM BCREAM TKEEPOUT BKEEPOUT TRESTRICT BRESTRICT VRESTRICT DRILLS HOLES _tsilk _bsilk _tNames _bNames _tValues _bValues Drill_legend _bDocu fp3
+
+# Export the color image:
+EXPORT IMAGE $HOME/Dropbox/APC/docs/images/fullcolorboard.png 800;
+
+# Monochrome image, both layers: 
+EXPORT IMAGE $HOME/Dropbox/APC/docs/images/boardlayout.png MONOCHROME 800;
+
+# Turn on the top layers only:
+SET COLOR_LAYER fp3 8;
+DISPLAY NONE TOP PADS VIAS DIMENSION TNAMES TCREAM DRILLS HOLES _tsilk _tNames _tValues Drill_legend TKEEPOUT TRESTRICT fp3
+
+# Monochrome image, top layer: 
+EXPORT IMAGE $HOME/Dropbox/APC/docs/images/boardtoplayout.png  800;
+
+# Turn on the bottom layers only:
+DISPLAY NONE BOTTOM PADS VIAS DIMENSION BNAMES BCREAM DRILLS HOLES _bsilk _bNames _bValues Drill_legend _bDocu BKEEPOUT BRESTRICT fp3
+
+# Monochrome image, bottom layer: 
+EXPORT IMAGE $HOME/Dropbox/APC/docs/images/boardbottomlayout.png  800;
+
+# Top silk:
+DISPLAY NONE DIMENSION _tsilk TNAMES 201bmp 202bmp 203bmp 
+EXPORT IMAGE $HOME/Dropbox/APC/docs/images/boardtopsilk.png MONOCHROME 800;
+
+# Bottom silk:
+DISPLAY NONE 200bmp  DIMENSION _bsilk _bnames BNAMES 
+EXPORT IMAGE $HOME/Dropbox/APC/docs/images/boardbottomsilk.png MONOCHROME 800;
+
+# Dimensions for the case:
+DISPLAY NONE DIMENSION tPlace tCream tKeepout tRestrict Holes Milling Document Reference Notes
+EXPORT IMAGE $HOME/Dropbox/APC/docs/images/boarddimensions.png MONOCHROME 800; 
+
+# Turn all the layers back on, including 200bmp this time
+DISPLAY NONE TOP BOTTOM PADS VIAS UNROUTED TPLACE tDocu bDocu BPLACE TORIGINS BORIGINS TNAMES BNAMES TVALUES BVALUES TSTOP BSTOP TCREAM BCREAM TKEEPOUT BKEEPOUT TRESTRICT BRESTRICT VRESTRICT DRILLS HOLES _tsilk _bsilk _tNames _bNames _tValues _bValues _bDocu 200bmp DIMENSION 
+
+# <EOF>
