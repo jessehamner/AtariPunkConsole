@@ -71,7 +71,7 @@
 \newcommand{\topsilk}{topsilk.png}
 \newcommand{\boarddimensions}{dimensions.png}
 
-\newcommand{\revision}{1.0}
+\newcommand{\revision}{1.1}
 
 % A key for optional output, here, the "how to make the images" section:
 \newif\ifkey
@@ -420,7 +420,7 @@ The PCB also includes three pieces of art from the ancient era of video games. t
 \hline
 \end{tabular}
 
-\caption{The comma-separated source text that \texttt{eagledraw.py} uses to draw Pitfall Harry, and the resulting image in Eagle CAD.}
+\caption{The comma-separated source text that \texttt{eagledraw.py} uses to write the script to draw Pitfall Harry, and the resulting image in Eagle CAD. Pitfall Harry didn't make it to this version of the board, but is used here as an example.}
 \label{fig:pitfallharry}
 \end{figure}
 
@@ -444,7 +444,14 @@ The PCB also includes three pieces of art from the ancient era of video games. t
 
 \bd
 
-\+[Revision \revision{}:] February 2017
+\+[Revision \revision{}:] March 2017
+\bi
+\+ Fixed wiring on two potentiometers (I outsmarted myself and wired them in reverse, so the volume control, e.g., worked backwards)
+\+ Re-routed traces to make the design friendly for desktop CNC mills
+\+ Added two current-limiting resistors just to use best practices for the rotary potentiometers; the extra 220 Ohms doesn't affect the sound, but prevents runaway current should the wiper fail.
+\ei
+
+\+[1.0:] February 2017
 \bi
 \+ Initial release
 \+ Changed switch to one in current production
@@ -453,27 +460,25 @@ The PCB also includes three pieces of art from the ancient era of video games. t
 \+ Moved some discrete components
 \ei
 
+
 \+[0.4:] July 2016
 \bi
 \+ Shrunk the footprint of discrete resistors
 \+ Renumbered a few components
 \+ Altered the 9V cradle part's footprint to improve pin placement
 \+ Changed a few labels
-\+ Never released
 \ei
 
 \+[0.3:] June 2016
 \bi
 \+ Changed switch
 \+ Moved a few components for clearance
-\+ Never released
 \ei
 
 
 \+[0.2:] January 2016
 \bi
 \+ Revealed a problem with the switch layout
-\+ Never released
 \ei
 
 \+[0.1:] December 2015
@@ -481,7 +486,6 @@ The PCB also includes three pieces of art from the ancient era of video games. t
 \+ Corrected problems with component layout, clearance, and part names
 \+ Added board cutouts to ensure it only fits in the enclosure in one specific orientation
 \+ Shrunk discrete component pin spacings from 10mm to 7mm
-\+ Never released
 \ei
 \ed
 

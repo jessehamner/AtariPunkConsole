@@ -32,3 +32,18 @@ Icon*
 .dropbox
 *.lck
 .APC1*
+
+# Eagle CAD:
+*.b#*
+*.s#*
+*.l#*
+*.ger
+*.gpi
+*.zip
+*.gz
+*.tar
+*.drills.dri
+*.drills.txt
+*.drills.xln
+*.old
+

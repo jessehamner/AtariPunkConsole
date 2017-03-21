@@ -1,4 +1,4 @@
 #!/bin/bash
-../../CleanUpGerbers/renamegerbers.sh -o -c -z -n APC1
+../../../CleanUpGerbers/renamegerbers.sh -o -c -z -n APC1
 
 
