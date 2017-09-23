@@ -11,7 +11,8 @@
 \usepackage[top=1in, bottom=1in, left=1.25in, right=1.0in]{geometry}
 \usepackage{hyperref}
 \usepackage{longtable}
-
+\usepackage{marvosym}
+\usepackage{amsmath, amssymb}
 
 % A few paragraph formatting parameters:
 \parskip = 6pt
@@ -146,7 +147,7 @@ This document is intended to assist in the assembly of a circuit board project t
 
 \section{Best Practices}
 \bi
-\+ Use static ground during soldering; these components can be easily damaged by static electricity
+\+ Use a wrist-strap ground during soldering; these components can be easily damaged by static electricity
 \+ Use thin (perhaps 0.032-inch or 0.8mm) solder for through-hole components
 \+ Use a good quality soldering iron % or hot air rework station
 \+ Clean the tip often on the brass scrubber
@@ -204,6 +205,15 @@ When soldering the stereo jack, heat a large pad on the PCB and melt a little so
 
 \ei
 
+
+\begin{figure}[hb!]
+\begin{center}
+\includegraphics[scale=0.14]{PCB.jpg}
+\end{center}
+\caption{The printed circuit board for this project.}
+\end{figure}
+
+
 \clearpage
 
 \section{Board Layout Images}
@@ -243,7 +253,7 @@ The next section includes images of the board design and layout for reference du
 \begin{center}
 \includegraphics[scale=1.1]{\bottommonochrome}
 \end{center}
-\caption{Bottom layer only. \textbf{Important:} no jacks or headers should be soldered facing ``down" (that is, with the business end of the component on the underside). Note the alignment notches are reversed; this perspective is viewed from the bottom, not through the top of the board.}
+\caption{Bottom layer only. \textbf{Important:} no jacks or headers should be soldered facing ``down." That is, \emph{only pins} should be visible when viewing the board from below. Note the alignment notches are reversed; this perspective is viewed from the bottom, not through the top of the board.}
 \end{figure}
 
 
@@ -267,12 +277,16 @@ The next section includes images of the board design and layout for reference du
 \caption{Silkscreens for top and bottom of the board. On the top silkscreen, note that the 8-bit Atari and Taito characters will be hidden under the rotary potentiometers once installed. From left to right: a dragon from the Atari 2600 \emph{Adventure} game; a Taito Space Invader; and a screen from \emph{Asteroids}. On the bottom silkscreen: note optional modification information and the Factory logo, copyright UNT Libraries.}
 \end{figure}
 
+
+
+
 \begin{figure}
 \begin{center}
 \includegraphics[scale=1.0]{\boarddimensions}
 \end{center}
 \caption{Board dimensions, should you want to design an enclosure for it. The three 2mm holes in the battery cradle could be attached to the underside of the enclosure with machine screws and nuts, but all fasteners must be flush with top surface of the cradle, meaning the underside of the enclosure would need recessed pockets for the nuts, or else rubberized feet that were taller than the portion of the fasteners that protrude through the bottom of the enclosure. It is also possible to create standoffs \emph{within} the case that provide underside clearance for fasteners such that the fasteners do not have exposed surfaces outside the case, at the slight expense of a taller overall case.}
 \end{figure}
+
 
 
 
@@ -306,7 +320,7 @@ Although not required to successfully assemble and use the Stepped Tone Generato
 
 This document includes images created from within Eagle CAD and using external programs. To show how it is done, and to provide any hints to those who would like to see how the documentation was made, I include the following mini-tutorial.
 
-\subsection{EagleCAD Schematic and Layout Images }
+\subsection*{EagleCAD Schematic and Layout Images }
 
 An EagleCAD script is provided in Figure \ref{fig:codelistexport} and in the GitHub repository. Run the script from within EagleCAD and the first set of images will appear. Basically, the script turns on the layers for each particular image, sets color or monochrome, sets the resolution to 600 DPI, and exports each resulting layer set to a PNG file. For instance, before making the \emph{top} layer, the script turns off the set of layers in EagleCAD that would make it hard to parse the top components -- i.e.~all of the ``bottom'' layers, like 16, 22, 24, 26, 28, 30, 32, 34, 36, 40, 42, 52, 122, 126, 128, and, as noted above, 200 (where the logo image silkscreen resides). To make an image of the underside, a similar operation is performed, blanking the ``top" layers. The script writes image files called:
 
@@ -379,9 +393,9 @@ and {\color{webblue}\href{http://www.imagemagick.org/script/index.php}{ImageMagi
 \clearpage
 \newpage
 
-\subsection{8-bit Art in Eagle CAD}
+\subsection*{8-bit Art in Eagle CAD}
 
-The PCB also includes three pieces of art from the ancient era of video games. the Asteroids ship was converted using the \texttt{import-bmp.ulp} user language script that is included in Eagle CAD. The other two presented a fun challenge, which was to draw the 8-bit sprites using the Eagle CAD scripting language. It's pretty easy to draw squares and rectangles using the language, so I wrote a Python script that reads in a very simple csv file, composed of rows of comma-separated ``1'' or ``0'' cells. The Python script then writes out a nice (and easily scalable, if you check out the top of the script) Eagle CAD script that draws the figure in the layer you specify. It's much faster than drawing it yourself, and the CAM script runs much faster too, since the sprites are so simple.
+The PCB also includes three pieces of art from the ancient era of video games. The Asteroids ship was converted using the \texttt{import-bmp.ulp} user language script that is included in Eagle CAD. The other two presented a fun challenge, which was to draw the 8-bit sprites using the Eagle CAD scripting language. It's pretty easy to draw squares and rectangles using the language, so I wrote a Python script that reads in a very simple csv file, composed of rows of comma-separated ``1'' or ``0'' cells. The Python script then writes out a nice (and easily scalable, if you check out the top of the script) Eagle CAD script that draws the figure in the layer you specify. It's much faster than drawing it yourself, and the CAM script runs much faster too, since the sprites are so simple.
 
 \medskip
 
@@ -391,7 +405,7 @@ The PCB also includes three pieces of art from the ancient era of video games. t
 \hline\\[\negsep]
 \multicolumn{1}{c}{\textbf{CSV code}} & \multicolumn{1}{c}{\textbf{Image}} \\[\sep]
 \hline
-
+\bigskip
 \begin{lstlisting}
 0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0
 0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0
@@ -420,7 +434,7 @@ The PCB also includes three pieces of art from the ancient era of video games. t
 \hline
 \end{tabular}
 
-\caption{The comma-separated source text that \texttt{eagledraw.py} uses to write the script to draw Pitfall Harry, and the resulting image in Eagle CAD. Pitfall Harry didn't make it to this version of the board, but is used here as an example.}
+\caption{The comma-separated source text that \texttt{eagledraw.py} uses to write the script to draw Pitfall Harry, and the resulting image in Eagle CAD. Pitfall Harry is not displayed on the the board, but is used here as an example.}
 \label{fig:pitfallharry}
 \end{figure}
 
