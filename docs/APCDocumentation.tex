@@ -30,7 +30,7 @@
  keywordstyle=\bfseries\color{blue},
  numberstyle=\tiny\ttfamily\color{black}, 
  stringstyle=\color{brown},
- otherkeywords={DISPLAY,EXPORT, IMAGE, MONOCHROME, RIPUP, SET, COLOR_LAYER},
+ otherkeywords={DISPLAY, EXPORT, IMAGE, MONOCHROME, RIPUP, SET, COLOR_LAYER},
  frame=single]
 }
 \lstset{style=custombash}
@@ -72,12 +72,12 @@
 \newcommand{\topsilk}{topsilk.png}
 \newcommand{\boarddimensions}{dimensions.png}
 
-\newcommand{\revision}{1.1}
+\newcommand{\revision}{1.2}
 
-% A key for optional output, here, the "how to make the images" section:
+% A key for optional output, here, the ``how to make the images" section:
 \newif\ifkey
 \keyfalse
-% Uncommenting \keytrue would set the "key" variable to TRUE:
+% Uncommenting \keytrue would set the ``key" variable to TRUE:
 \keytrue
 
 
@@ -149,7 +149,7 @@ This document is intended to assist in the assembly of a circuit board project t
 \bi
 \+ Use a wrist-strap ground during soldering; these components can be easily damaged by static electricity
 \+ Use thin (perhaps 0.032-inch or 0.8mm) solder for through-hole components
-\+ Use a good quality soldering iron % or hot air rework station
+\+ Use a good quality soldering iron
 \+ Clean the tip often on the brass scrubber
 \+ Re-tin the tip often
 \+ Lifting PCB pads and traces is quite possible without much effort---watch the iron temperature, and don't apply heat for more than ten seconds per soldered pin 
@@ -206,13 +206,19 @@ When soldering the stereo jack, heat a large pad on the PCB and melt a little so
 \ei
 
 
-\begin{figure}[hb!]
+\begin{figure}[ht!]
 \begin{center}
-\includegraphics[scale=0.14]{PCB.jpg}
+\includegraphics[scale=0.12]{PCB.jpg}
 \end{center}
-\caption{The printed circuit board for this project.}
+\caption{The bare printed circuit board for this project.}
 \end{figure}
 
+\begin{figure}[hb!]
+\begin{center}
+\includegraphics[scale=0.14]{completedboard.jpg}
+\caption{A completed board, revision 1.2.}
+\end{center}
+\end{figure}
 
 \clearpage
 
@@ -365,7 +371,7 @@ The script to appropriately convert the images is seen in Figure \ref{fig:codeli
 \end{tabular}
 \medskip
 
-\noindent This script was written for Mac OS X but should run on any system with 
+\noindent This script was written for macOS but should run on any system with 
 {\color{webblue}\href{https://en.wikipedia.org/wiki/Bash_%28Unix_shell%29}{\texttt{bash}}}
 and {\color{webblue}\href{http://www.imagemagick.org/script/index.php}{ImageMagick}} installed.
 
@@ -406,24 +412,17 @@ The PCB also includes three pieces of art from the ancient era of video games. T
 \multicolumn{1}{c}{\textbf{CSV code}} & \multicolumn{1}{c}{\textbf{Image}} \\[\sep]
 \hline
 \bigskip
-\begin{lstlisting}
-0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0
-0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0
-0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0
-0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0
-0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0
-0,0,0,0,0,0,1,1,1,1,0,0,1,1,0,0
-0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0
-0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0
-0,0,1,1,0,0,1,1,1,1,0,0,0,0,0,0
-0,0,1,1,0,0,1,1,1,1,0,0,0,0,0,0
-0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0
-0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0
-0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0
-1,1,1,1,0,0,1,1,1,1,0,0,1,1,0,0
-0,0,1,1,1,1,1,1,0,0,0,0,1,1,0,0
-0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1
-\end{lstlisting}
+\lstinputlisting[
+language=bash, 
+ columns=fullflexible, 
+ breaklines=true, 
+ basicstyle=\ttfamily\footnotesize, 
+ numbers=left, 
+ numbersep=5pt,
+ commentstyle=\color{black},
+ numberstyle=\tiny\ttfamily\color{black}, 
+ frame=none]
+ {../graphics/pitfallharry.txt}
 
 &
 
